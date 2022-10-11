@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script_client">
+    <sys_script_client action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <applies_extended>false</applies_extended>
+        <condition/>
+        <description/>
+        <field>urgency</field>
+        <global>true</global>
+        <isolate_script>true</isolate_script>
+        <messages/>
+        <name>Set Priority after Urgency Change</name>
+        <order/>
+        <script><![CDATA[function onChange(control, oldValue, newValue, isLoading, isTemplate) {
+    if (isLoading || newValue === '')
+        return;
+    var sys_id = g_form.getValue('task');
+    if (sys_id.trim().length == 0)
+        return;
+    var impact = parseInt(g_form.getValue('impact'));
+    if (isNaN(impact))
+        impact = 2;
+    var priority = parseInt(g_form.getValue('priority'));
+    var urgency = parseInt(newValue);
+    if (isNaN(urgency))
+        urgency = 2;
+    var value = urgency + impact - 1;
+    if (priority != value)
+        g_form.setValue('priority', value);
+}]]></script>
+        <sys_class_name>sys_script_client</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-10-10 17:17:16</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>e55004dc97221110d87839000153af5e</sys_id>
+        <sys_mod_count>7</sys_mod_count>
+        <sys_name>Set Priority after Urgency Change</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Personal Activity Tool" source="x_44813_persactivt">c2853b0497221110d87839000153af42</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Personal Activity Tool">c2853b0497221110d87839000153af42</sys_scope>
+        <sys_update_name>sys_script_client_e55004dc97221110d87839000153af5e</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-10-10 17:56:25</sys_updated_on>
+        <table>x_44813_persactivt_activity</table>
+        <type>onChange</type>
+        <ui_type>10</ui_type>
+        <view/>
+    </sys_script_client>
+</record_update>

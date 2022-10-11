@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="State Mapping" max_length="40" name="x_44813_persactivt_state_mapping" sizeclass="0" type="collection">
+        <element label="inactive" mandatory="true" max_length="40" name="inactive" type="boolean"/>
+        <element label="mapped" mandatory="true" max_length="40" name="mapped_value" type="integer"/>
+        <element label="source" mandatory="true" max_length="40" name="source_value" type="integer"/>
+        <element label="table" mandatory="true" max_length="80" name="table" type="table_name"/>
+    </element>
+</database>
