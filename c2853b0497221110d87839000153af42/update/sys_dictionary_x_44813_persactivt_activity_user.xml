@@ -14,10 +14,10 @@
         <choice/>
         <choice_field/>
         <choice_table/>
-        <column_label>user</column_label>
+        <column_label>User</column_label>
         <comments/>
         <create_roles/>
-        <default_value/>
+        <default_value>javascript:gs.getUserID();</default_value>
         <defaultsort/>
         <delete_roles/>
         <dependent/>
@@ -25,7 +25,7 @@
         <display>false</display>
         <dynamic_creation>false</dynamic_creation>
         <dynamic_creation_script/>
-        <dynamic_default_value/>
+        <dynamic_default_value display_value="Sender">2fd8e97bef3221002841f7f775c0fbc1</dynamic_default_value>
         <dynamic_ref_qual/>
         <element>user</element>
         <element_reference>false</element_reference>
@@ -38,7 +38,7 @@
         <name>x_44813_persactivt_activity</name>
         <next_element/>
         <primary>false</primary>
-        <read_only>false</read_only>
+        <read_only>true</read_only>
         <read_roles/>
         <reference display_value="" name="sys_user">sys_user</reference>
         <reference_cascade_rule/>
@@ -54,19 +54,19 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-10-10 16:51:27</sys_created_on>
         <sys_id>e1f9f7c497221110d87839000153afcb</sys_id>
-        <sys_mod_count>0</sys_mod_count>
-        <sys_name>user</sys_name>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>User</sys_name>
         <sys_package display_value="Personal Activity Tool" source="x_44813_persactivt">c2853b0497221110d87839000153af42</sys_package>
         <sys_policy/>
         <sys_scope display_value="Personal Activity Tool">c2853b0497221110d87839000153af42</sys_scope>
         <sys_update_name>sys_dictionary_x_44813_persactivt_activity_user</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-10-10 16:51:27</sys_updated_on>
+        <sys_updated_on>2022-10-12 18:20:50</sys_updated_on>
         <table_reference>false</table_reference>
         <text_index>false</text_index>
         <unique>false</unique>
         <use_dependent_field>false</use_dependent_field>
-        <use_dynamic_default>false</use_dynamic_default>
+        <use_dynamic_default>true</use_dynamic_default>
         <use_reference_qualifier>simple</use_reference_qualifier>
         <virtual>false</virtual>
         <widget/>

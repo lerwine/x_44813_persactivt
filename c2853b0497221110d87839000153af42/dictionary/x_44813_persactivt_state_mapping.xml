@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
     <element label="State Mapping" max_length="40" name="x_44813_persactivt_state_mapping" sizeclass="0" type="collection">
         <element label="inactive" mandatory="true" max_length="40" name="inactive" type="boolean"/>
-        <element label="mapped" mandatory="true" max_length="40" name="mapped_value" type="integer"/>
+        <element choice="3" default="1" label="mapped" mandatory="true" max_length="40" name="mapped_value" type="integer">
+            <choice>
+                <element inactive_on_update="false" label="Ready" sequence="1" value="1"/>
+                <element inactive_on_update="false" label="In Progress" sequence="2" value="2"/>
+                <element inactive_on_update="false" label="Pending" sequence="3" value="-5"/>
+                <element inactive_on_update="false" label="Closed" sequence="4" value="3"/>
+            </choice>
+        </element>
         <element label="source" mandatory="true" max_length="40" name="source_value" type="integer"/>
         <element label="table" mandatory="true" max_length="80" name="table" type="table_name"/>
     </element>
