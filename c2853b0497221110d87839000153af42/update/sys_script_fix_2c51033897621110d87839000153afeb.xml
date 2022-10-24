@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_fix">
+    <sys_script_fix action="INSERT_OR_UPDATE">
+        <before>false</before>
+        <description>Creates default state mappings if there are none defined.</description>
+        <name>Ensure State Mapping</name>
+        <record_for_rollback>false</record_for_rollback>
+        <script><![CDATA[(function() {
+    var gr = new GlideRecord('x_44813_persactivt_state_mapping');
+    gr.query();
+    if (gr.next())
+        return;
+    var mappings = [{
+            table: "problem",
+            source: 101, // New
+            mapped: 1
+        },
+        {
+            table: "problem",
+            source: 102, // Assess
+            mapped: 1
+        },
+        {
+            table: "problem",
+            source: 103, // Root Cause Analysis
+            mapped: 2
+        },
+        {
+            table: "problem",
+            source: 104, // Fix in Progress
+            mapped: 2
+        },
+        {
+            table: "problem_task",
+            source: 151, // New
+            mapped: 1
+        },
+        {
+            table: "problem_task",
+            source: 152, // Assess
+            mapped: 1
+        },
+        {
+            table: "problem_task",
+            source: 154, // Work in Progress
+            mapped: 2
+        },
+        {
+            table: "incident",
+            source: 3, // On Hold
+            mapped: -5
+        },
+        {
+            table: "change_request",
+            source: -5, // New
+            mapped: 1
+        },
+        {
+            table: "change_request",
+            source: -1, // Implement
+            mapped: 2
+        },
+        {
+            table: "dmn_demand",
+            source: 2, // Submitted
+            mapped: 1
+        },
+        {
+            table: "dmn_demand",
+            source: 3, // Screening
+            mapped: 2
+        },
+        {
+            table: "dmn_demand",
+            source: -4, // Qualified
+            mapped: 2
+        },
+        {
+            table: "dmn_demand",
+            source: 10, // Deferred
+            mapped: -5
+        },
+        {
+            table: "sn_deploy_pipeline_deployment_request",
+            source: 1, // In Review
+            mapped: 2
+        },
+        {
+            table: "sn_deploy_pipeline_deployment_request",
+            source: 2, // Closed - Published
+            mapped: 3
+        },
+        {
+            table: "sn_collab_request_dev_collab_task",
+            source: 2, // Closed - Approved
+            mapped: 3
+        },
+        {
+            table: "itfm_budget_task",
+            source: 3, // Awaiting Input
+            mapped: -5
+        },
+        {
+            table: "itfm_budget_task",
+            source: 4, // Pending Approval
+            mapped: -5
+        },
+        {
+            table: "scan_task",
+            source: 3, // On Hold
+            mapped: -5
+        },
+        {
+            table: "im_idea_core",
+            source: -5, // Draft
+            mapped: -5
+        },
+        {
+            table: "im_idea_core",
+            source: 1, // Submitted
+            mapped: -5
+        },
+        {
+            table: "im_idea_core",
+            source: 2, // In Backlog
+            mapped: -5
+        },
+        {
+            table: "im_idea_core",
+            source: 4, // Planned
+            mapped: 1
+        },
+        {
+            table: "im_idea_core",
+            source: 5, // In Development
+            mapped: 2
+        }
+    ];
+    for (var i = 0; i < mappings.length; i++) {
+        var m = mappings[i];
+        gr = new GlideRecord('x_44813_persactivt_state_mapping');
+        gr.initialize();
+        gr.setValue('table', m.table);
+        gr.setValue('source_value', '' + m.source);
+        gr.setValue('mapped_value', '' + m.mapped);
+        gr.insert();
+    }
+})();]]></script>
+        <sys_class_name>sys_script_fix</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-10-12 20:34:28</sys_created_on>
+        <sys_id>2c51033897621110d87839000153afeb</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>Ensure State Mapping</sys_name>
+        <sys_package display_value="Personal Activity Tool" source="x_44813_persactivt">c2853b0497221110d87839000153af42</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Personal Activity Tool">c2853b0497221110d87839000153af42</sys_scope>
+        <sys_update_name>sys_script_fix_2c51033897621110d87839000153afeb</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-10-12 20:47:49</sys_updated_on>
+        <unloadable>false</unloadable>
+    </sys_script_fix>
+</record_update>

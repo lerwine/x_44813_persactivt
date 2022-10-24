@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script">
+    <sys_script action="INSERT_OR_UPDATE">
+        <abort_action>false</abort_action>
+        <access>package_private</access>
+        <action_delete>false</action_delete>
+        <action_insert>false</action_insert>
+        <action_query>false</action_query>
+        <action_update>true</action_update>
+        <active>true</active>
+        <add_message>false</add_message>
+        <advanced>true</advanced>
+        <change_fields>false</change_fields>
+        <client_callable>false</client_callable>
+        <collection>task</collection>
+        <condition/>
+        <description/>
+        <execute_function>false</execute_function>
+        <filter_condition table="task">urgencyVALCHANGES^ORimpactVALCHANGES^ORpriorityVALCHANGES^ORstateVALCHANGES^ORdue_dateVALCHANGES^ORwork_startVALCHANGES^ORwork_endVALCHANGES^EQ<item endquery="false" field="urgency" goto="false" newquery="false" operator="VALCHANGES" or="false" value=""/>
+            <item endquery="false" field="impact" goto="false" newquery="false" operator="VALCHANGES" or="true" value=""/>
+            <item display_value="-- None --" endquery="false" field="priority" goto="false" newquery="false" operator="VALCHANGES" or="true" value=""/>
+            <item endquery="false" field="state" goto="false" newquery="false" operator="VALCHANGES" or="true" value=""/>
+            <item endquery="false" field="due_date" goto="false" newquery="false" operator="VALCHANGES" or="true" value=""/>
+            <item endquery="false" field="work_start" goto="false" newquery="false" operator="VALCHANGES" or="true" value=""/>
+            <item endquery="false" field="work_end" goto="false" newquery="false" operator="VALCHANGES" or="true" value=""/>
+            <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
+        </filter_condition>
+        <is_rest>false</is_rest>
+        <message/>
+        <name>Update Related Personal Activities</name>
+        <order>100</order>
+        <priority>100</priority>
+        <rest_method/>
+        <rest_method_text/>
+        <rest_service/>
+        <rest_service_text/>
+        <rest_variables/>
+        <role_conditions/>
+        <script><![CDATA[(function executeRule(current, previous /*null when async*/) {
+	var activityGr = new GlideRecord('x_44813_persactivt_activity');
+	activityGr.addQuery('task', current.getValue('sys_id'));
+	if (!activityGr.next())
+		return;
+	var gr = new GlideRecord('x_44813_persactivt_state_mapping');
+	var tableName = current.getTableName();
+	gr.addQuery('table', tableName);
+	var state = parseInt(current.getValue('state'));
+	gr.addQuery('source', state);
+	gr.addQuery('inactive', false);
+	gr.query();
+	if (gr.next())
+		state = parseInt(gr.getValue('mapped'));
+	else if (state < 0)
+		state = -5;
+	else if (state > 3)
+		state = 3;
+	else if (state == 0)
+		state = 1;
+	var impact = parseInt(current.getValue('impact'));
+	if (isNaN(impact))
+		impact = 2;
+	else if (impact < 1)
+		impact = 1;
+	else if (impact > 3)
+		impact = 3;
+	var urgency = parseInt(current.getValue('urgency'));
+	if (isNaN(urgency))
+		urgency = 2;
+	else if (urgency < 1)
+		urgency = 1;
+	else if (urgency > 3)
+		urgency = 3;
+	var priority = parseInt(current.getValue('urgency'));
+	if (isNaN(priority))
+		priority = urgency + impact - 1;
+	else if (priority < 1)
+		priority = 1;
+	else if (priority > 5)
+		priority = 5;
+	do {
+		var changed = [];
+		if (parseInt(activityGr.getValue('state')) != state) {
+			activityGr.setValue('state', state);
+			changed.push('state');
+		}
+		if (parseInt(activityGr.getValue('urgency')) != urgency) {
+			activityGr.setValue('urgency', urgency);
+			changed.push('urgency');
+		}
+		if (parseInt(activityGr.getValue('impact')) != impact) {
+			activityGr.setValue('impact', impact);
+			changed.push('impact');
+		}
+		if (parseInt(activityGr.getValue('priority')) != priority) {
+			activityGr.setValue('priority', priority);
+			changed.push('priority');
+		}
+		if (changed.length == 1)
+			activityGr.update('Changed: ' + tableName + '.' + changed[0]);
+		else if (changed.length > 1)
+			activityGr.update('Changed: ' + tableName + '.' + changed.join('; ' + tableName + '.'));
+	} while (activityGr.next());
+})(current, previous);]]></script>
+        <sys_class_name>sys_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-10-10 18:26:14</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>1cf0981c97621110d87839000153afe4</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>Update Related Personal Activities</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Personal Activity Tool" source="x_44813_persactivt">c2853b0497221110d87839000153af42</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Personal Activity Tool">c2853b0497221110d87839000153af42</sys_scope>
+        <sys_update_name>sys_script_1cf0981c97621110d87839000153afe4</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-10-10 18:46:24</sys_updated_on>
+        <template/>
+        <when>after</when>
+    </sys_script>
+    <sys_translated_text action="delete_multiple" query="documentkey=1cf0981c97621110d87839000153afe4"/>
+</record_update>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_policy_action">
+    <sys_ui_policy_action action="INSERT_OR_UPDATE">
+        <cleared>false</cleared>
+        <disabled>true</disabled>
+        <field>due_date</field>
+        <mandatory>ignore</mandatory>
+        <sys_class_name>sys_ui_policy_action</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-10-10 18:49:18</sys_created_on>
+        <sys_id>5ab6145097a21110d87839000153af77</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>due_date</sys_name>
+        <sys_package display_value="Personal Activity Tool" source="x_44813_persactivt">c2853b0497221110d87839000153af42</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Personal Activity Tool">c2853b0497221110d87839000153af42</sys_scope>
+        <sys_update_name>sys_ui_policy_action_5ab6145097a21110d87839000153af77</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-10-10 18:49:18</sys_updated_on>
+        <table>x_44813_persactivt_activity</table>
+        <ui_policy display_value="Read Only When associated with task">9496905097a21110d87839000153af0a</ui_policy>
+        <visible>ignore</visible>
+    </sys_ui_policy_action>
+</record_update>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="Personal Activity" max_length="40" name="x_44813_persactivt_activity" sizeclass="0" type="collection">
+        <element label="Detailed Description" max_length="4000" name="detailed_description" type="string"/>
+        <element label="Due date" max_length="40" name="due_date" type="glide_date_time"/>
+        <element label="End date" max_length="40" name="end_date" type="glide_date_time"/>
+        <element choice="3" default="2" label="Impact" mandatory="true" max_length="40" name="impact" type="integer">
+            <choice>
+                <element inactive_on_update="false" label="1 - High" sequence="1" value="1"/>
+                <element inactive_on_update="false" label="2 - Medium" sequence="2" value="2"/>
+                <element inactive_on_update="false" label="3 - Low" sequence="3" value="3"/>
+            </choice>
+        </element>
+        <element default="0" label="order" mandatory="true" max_length="40" name="order" type="integer"/>
+        <element label="Parent" max_length="32" name="parent" reference="x_44813_persactivt_activity" reference_qual="state&lt;3^EQ" reference_qual_condition="state&lt;3^EQ" type="reference"/>
+        <element choice="3" default="3" label="Priority" mandatory="true" max_length="40" name="priority" read_only="true" type="integer">
+            <choice>
+                <element inactive_on_update="false" label="1 - Critical" sequence="1" value="1"/>
+                <element inactive_on_update="false" label="2 - High" sequence="2" value="2"/>
+                <element inactive_on_update="false" label="3 - Moderate" sequence="3" value="3"/>
+                <element inactive_on_update="false" label="4 - Low" sequence="4" value="4"/>
+                <element inactive_on_update="false" label="5 - Planning" sequence="5" value="5"/>
+            </choice>
+        </element>
+        <element label="Related Task" max_length="32" name="related_task" reference="task" type="reference"/>
+        <element display="true" label="Short description" mandatory="true" max_length="40" name="short_description" type="string"/>
+        <element label="Start date" max_length="40" name="start_date" type="glide_date_time"/>
+        <element choice="3" default="1" label="State" mandatory="true" max_length="40" name="state" type="integer">
+            <choice>
+                <element inactive_on_update="false" label="Ready" sequence="1" value="1"/>
+                <element inactive_on_update="false" label="In Progress" sequence="2" value="2"/>
+                <element inactive_on_update="false" label="Pending" sequence="3" value="-5"/>
+                <element inactive_on_update="false" label="Closed" sequence="4" value="3"/>
+            </choice>
+        </element>
+        <element choice="3" default="2" label="Urgency" mandatory="true" max_length="40" name="urgency" type="integer">
+            <choice>
+                <element inactive_on_update="false" label="1 - High" sequence="1" value="1"/>
+                <element inactive_on_update="false" label="2 - Medium" sequence="2" value="2"/>
+                <element inactive_on_update="false" label="3 - Low" sequence="3" value="3"/>
+            </choice>
+        </element>
+        <element default="javascript:gs.getUserID();" dynamic_default_value="2fd8e97bef3221002841f7f775c0fbc1" label="User" mandatory="true" max_length="32" name="user" read_only="true" reference="sys_user" type="reference" use_dynamic_default="true"/>
+        <index name="index">
+            <element name="parent"/>
+        </index>
+        <index name="index2">
+            <element name="related_task"/>
+        </index>
+        <index name="index3">
+            <element name="user"/>
+        </index>
+    </element>
+</database>
